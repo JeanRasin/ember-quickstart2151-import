@@ -1,0 +1,12 @@
+{{#each visibleLayers as |layerModel|}}
+  {{#if layerModel.legendCanBeDisplayed}}
+    {{component (concat "legends/" layerModel.type "-legend")
+      layer=layerModel
+      showLayerName=true
+      lazyLoaded=false
+      height=height
+      rightPadding=rightPadding
+      legendsLoaded='legendsLoaded'
+    }}
+  {{/if}}
+{{/each}}

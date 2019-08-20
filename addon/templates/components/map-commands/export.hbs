@@ -1,0 +1,45 @@
+{{#map-commands/base
+  class=(concat flexberryClassNames.wrapper " " class)
+  name="export"
+  caption=caption
+  tooltip=tooltip
+  iconClass=iconClass
+}}
+  {{#block-slot "submenu"}}
+    {{map-commands/base
+      class=(concat flexberryClassNames.exportDownload " " exportDownloadClass)
+      name="export-download"
+      caption=exportDownloadCaption
+      tooltip=exportDownloadTooltip
+      iconClass=exportDownloadIconClass
+      execute=(action "onExportDownloadMapCommandExecute")
+    }}
+    {{map-commands/base
+      class=(concat flexberryClassNames.exportPrint " " exportPrintClass)
+      name="export-print"
+      caption=exportPrintCaption
+      tooltip=exportPrintTooltip
+      iconClass=exportPrintIconClass
+      execute=(action "onExportPrintMapCommandExecute")
+    }}
+  {{/block-slot}}
+{{/map-commands/base}}
+
+{{#if _exportDialogHasBeenRequested}}
+  {{component "map-commands-dialogs/export"
+    class=flexberryClassNames.exportDialog
+    visible=_exportDialogIsVisible
+    isBusy=_exportIsInProgress
+    showDownloadingFileSettings=_showDownloadingFileSettings
+    showErrorMessage=_showExportErrorMessage
+    errorMessage=_exportErrorMessage
+    leafletMap=_executeActionEventObject.mapCommand.leafletMap
+    layers=_executeActionEventObject.mapCommand.layers
+    defaultMapCaption=defaultMapCaption
+    timeout=timeout
+    approve=(action "onExportDialogApprove")
+    deny=(action "onExportDialogDeny")
+    beforeHide=(action "onExportDialogBeforeHide")
+    hide=(action "onExportDialogHide")
+  }}
+{{/if}}

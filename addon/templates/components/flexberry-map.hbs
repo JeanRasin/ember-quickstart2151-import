@@ -1,0 +1,8 @@
+{{#if _isLoaderShown}}
+  <div class="{{flexberryClassNames.loaderDimmer}} ui active dimmer">
+  </div>
+  <div class="{{flexberryClassNames.loader}} ui active text loader">
+    {{_loaderContent}}
+  </div>
+{{/if}}
+{{yield _leafletObject}}
